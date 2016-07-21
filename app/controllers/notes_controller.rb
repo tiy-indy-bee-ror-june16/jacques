@@ -1,7 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :destroy]
-
-  # GET /notes
+    # GET /notes
   def index
     @notes = Note.all
 
@@ -18,9 +17,12 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
+      params[:tags].split(",").map(&:strip).each do |name|
+        @note.tags << Tag.find_or_initialize_by(name: name)
+      end
       render json: @note, status: :created, location: @note
     else
-      render json: @note.errors, status: :unprocessable_entity
+      render json: @note.errors, status: :bad_request
     end
   end
 
@@ -46,6 +48,7 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:title, :body, :user_id)
+      params.permit(:title, :body)
     end
+
 end

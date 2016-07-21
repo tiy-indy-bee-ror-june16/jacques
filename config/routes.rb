@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :users
-  resources :tags
-  resources :notes
+  scope :api do
+    resources :tags, except: [:show]
+    resources :notes
+  end
+
+  get 'api/notes/tag/:name(.:format)' => 'tags#show'
+
 end
