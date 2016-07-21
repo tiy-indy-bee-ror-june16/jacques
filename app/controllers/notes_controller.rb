@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = {notes: Note.all}
 
     render json: @notes
   end
@@ -15,12 +15,12 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = Note.new
 
     if @note.save
       render json: @note, status: :created, location: @note
     else
-      render json: @note.errors, status: :unprocessable_entity
+      render json: @note.errors, status: 400
     end
   end
 
