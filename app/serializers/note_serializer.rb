@@ -1,8 +1,7 @@
 class NoteSerializer < ActiveModel::Serializer
-  
-  attributes :id, :title, :body, :user_id
 
-  belongs_to :user
+  attributes :title, :body, :created_at, :updated_at
+
   has_many :tags
 
 end

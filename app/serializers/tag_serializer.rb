@@ -1,7 +1,6 @@
 class TagSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :name
 
-  belongs_to :user
   has_many :tags
 
 end

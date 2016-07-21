@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope :api do
-    resources :tag, :users, :notes
+    resources :tags, :users, :notes
   end
 
 end

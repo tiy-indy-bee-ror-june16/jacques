@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = {notes: Note.all}
+    @notes = Note.all
 
     render json: @notes
   end
@@ -20,7 +20,7 @@ class NotesController < ApplicationController
     if @note.save
       render json: @note, status: :created, location: @note
     else
-      render json: @note.errors, status: 400
+      render json: @note.errors, status: :bad_request
     end
   end
 
