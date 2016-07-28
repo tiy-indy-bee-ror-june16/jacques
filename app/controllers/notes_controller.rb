@@ -1,8 +1,10 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :destroy]
+  before_action :require_user
+
     # GET /notes
   def index
-    @notes = Note.all
+    @notes = current_user.notes
 
     render json: @notes
   end
@@ -14,15 +16,17 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
 
     if @note.save
-      params[:tags].split(",").map(&:strip).each do |name|
-        @note.tags << Tag.find_or_initialize_by(name: name)
+      if params[:tags]
+        params[:tags].split(",").map(&:strip).each do |name|
+          @note.tags << Tag.find_or_initialize_by(name: name)
+        end
       end
       render json: @note, status: :created, location: @note
     else
-      render json: @note.errors, status: :bad_request
+      render json: {errors: @note.errors.full_messages.map{|m| {error: m} }}, status: :bad_request
     end
   end
 
@@ -43,7 +47,7 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      @note = current_user.notes.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
