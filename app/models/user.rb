@@ -4,6 +4,8 @@ class User < ApplicationRecord
     has_secure_password
 
     validates :api_token, presence: true, uniqueness: true
+    validates :username, presence: true, uniqueness: true
+    validates :email, presence: true, uniqueness: true
 
     before_validation :generate_api_token, on: :create
 
