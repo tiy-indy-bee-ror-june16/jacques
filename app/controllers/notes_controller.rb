@@ -1,10 +1,10 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :destroy]
-  before_action :require_user
+  # before_action :require_user
 
     # GET /notes
   def index
-    @notes = current_user.notes
+    @notes = Note.all
 
     render json: @notes
   end
