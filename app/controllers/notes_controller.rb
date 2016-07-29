@@ -1,10 +1,14 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :destroy]
+  before_action :require_user, only: [:create, :update, :destroy]
 
   # GET /notes
   def index
-    @notes = Note.all
-
+    if current_user
+      @notes = current_user.notes
+    else
+      @notes = Note.all
+    end
     render json: @notes
   end
 
@@ -15,10 +19,10 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
 
     if @note.save
-     params[:tags].split(",").map(&:strip).map{|tag| @note.tags << (Tag.find_or_create_by(name: tag))}
+     params[:tags].split(",").map(&:strip).each{|tag| @note.tags << Tag.find_or_initialize_by(name: tag)}
       render json: @note, status: :created, location: @note
     else
       render json: {errors: @note.errors.full_messages.map{|message| {error: message}}}, status: 400
