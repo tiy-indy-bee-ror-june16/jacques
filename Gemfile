@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 # Use postgresql as the database for Active Record
@@ -26,7 +28,6 @@ group :development, :test do
   gem 'byebug'
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
   gem 'database_cleaner'
 end
 
@@ -40,6 +41,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
