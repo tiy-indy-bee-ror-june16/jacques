@@ -25,7 +25,7 @@ end
 50.times do
   note = Note.create!(
     title: Faker::Beer.name,
-    body: Faker::Hipster.paragraphs(5),
+    body: Faker::Hipster.paragraphs(5).join("\n\n"),
     user: user.sample,
     created_at: Faker::Time.between(6.months.ago, Date.today, :all),
   )
