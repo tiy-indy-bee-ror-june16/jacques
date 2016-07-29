@@ -16,6 +16,7 @@ gem 'puma'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'pry-rails'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -28,7 +29,7 @@ group :development, :test do
   gem 'byebug'
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
+
   gem 'database_cleaner'
 end
 
