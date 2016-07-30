@@ -18,11 +18,24 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, serializer: CompleteUserSerializer
     else
       render json: @user.errors, status: :unprocessable_entity
     end
   end
+
+  def login
+    if @user = User.find_by(email: params[:email])
+      if @user.authenticate(params[:password])
+        render json: @user, serializer: CompleteUserSerializer
+      else
+        render json: {error: "Incorrect Password"}, status: :unprocessable_entity
+      end
+    else
+      render json: {error: "Unrecognized Email"}, status: :unprocessable_entity
+    end
+  end
+
 
   # PATCH/PUT /users/1
   def update
