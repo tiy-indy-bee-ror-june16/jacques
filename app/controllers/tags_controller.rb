@@ -11,8 +11,8 @@ class TagsController < ApplicationController
   # GET /tags/1
   def show
     @tag = Tag.find_by(name: params[:name])
-    
-    render json: @tag
+
+    render json: @tag serializer: TagSerializer
   end
 
   # POST /tags
