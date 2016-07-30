@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         render json: {error: "Incorrect Password"}, status: :unprocessable_entity
       end
     else
-      render json: {error: "Unrecognized Email"}, status: :unprocessable_entity
+      render json: {error: "Unrecognized Username"}, status: :unprocessable_entity
     end
   end
 

@@ -16,7 +16,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = current_user.notes.new(note_params)
+    @note = Note.new(note_params)
 
     if @note.save
       if params[:tags]
