@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   scope :api do
     resources :users
-    resources :tags
+    resources :tags, except: [:show]
     resources :notes
 
   end
+
+  get 'notes/tag/:name(.:format)' => 'tags#show'
 
 end
