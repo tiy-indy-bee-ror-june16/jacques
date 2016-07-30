@@ -7,5 +7,4 @@ Rails.application.routes.draw do
     get 'notes/tag/:name(.:format)' => 'tags#show'
   end
 
-
 end
