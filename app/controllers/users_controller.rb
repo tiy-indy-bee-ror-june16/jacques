@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    if @user = User.find_by(email: params[:email])
+    if @user = User.find_by(username: params[:username])
       if @user.authenticate(params[:password])
         render json: @user, serializer: CompleteUserSerializer
       else
