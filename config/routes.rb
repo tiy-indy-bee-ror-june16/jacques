@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :users
     resources :tags, except: [:show]
     resources :notes
-    get 'tag/:name(.:format)' => 'tags#show'
+
   end
+
+  get 'tag/:name(.:format)' => 'tags#show'
 
 end
