@@ -8,7 +8,7 @@
 
 tag = 12.times do
   Tag.create!(
-    name: Faker::Lorem.words(1)
+    name: Faker::Hipster.word
   )
 end
 
