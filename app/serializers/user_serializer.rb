@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :email, :api_token
+  attributes :email
 
   has_many :notes
 end

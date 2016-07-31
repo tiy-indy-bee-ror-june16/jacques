@@ -27,7 +27,7 @@ Tag.create(name: "Money")
 
 
 100.times do
-  note = Note.new(title: Faker::Book.title, body: Faker::Hipster.sentences((1..8).to_a.sample).join(" "), user_id: (1..10).to_a.sample, created_at:Faker::Time.between(DateTime.now - 500, DateTime.now))
+  note = Note.new(title: Faker::Book.title, body: Faker::Hipster.paragraphs((1..8).to_a.sample).join("\n"), user_id: (1..10).to_a.sample, created_at:Faker::Time.between(DateTime.now - 500, DateTime.now))
   (1..4).to_a.sample.times do
     note.tags << Tag.offset(rand(Tag.count)).first
     puts "hi"

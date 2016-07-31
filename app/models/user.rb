@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :notes
   validates :api_token, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   has_secure_password
   before_validation :generate_api_token, on: :create
 

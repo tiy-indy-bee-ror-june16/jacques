@@ -17,6 +17,10 @@ class NotesController < ApplicationController
     render json: @note
   end
 
+  def count
+    render json: Note.count
+  end
+
   # POST /notes
   def create
     @note = current_user.notes.new(note_params)
@@ -32,6 +36,8 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
+      @note.tags.delete_all
+      params[:tags].split(",").map(&:strip).each{|tag| @note.tags << Tag.find_or_initialize_by(name: tag)}
       render json: @note
     else
       render json: {errors: @note.errors.full_messages.map{|message| {error: message}}}, status: 400

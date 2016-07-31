@@ -5,6 +5,7 @@ scope :api do
 end
 
 root 'notes#index'
-get '/api/notes/tag/(:name)' => 'tags#show'
+get '/api/notes_count/' => 'notes#count'
+post '/api/login' => 'sessions#create'
 
 end
