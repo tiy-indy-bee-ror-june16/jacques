@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   end
 
   get 'api/notes/tag/:name(.:format)' => 'tags#show'
+  post 'api/users/login' => 'users#login'
 
 end

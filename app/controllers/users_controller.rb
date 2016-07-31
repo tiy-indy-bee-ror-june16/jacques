@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :require_user, only: [:update, :destroy]
 
   # GET /users
   def index
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    current_user
     render json: @user
   end
 
@@ -20,7 +22,20 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created, location: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  #POST /login
+  def login
+    if @user = User.find_by(email: params[:email])
+      if @user.authenticate(params[:password])
+        render json: {api_token: @user.api_token}.to_json
+      else
+        render json: {error: "Password incorrect"}, status: :unprocessable_entity
+      end
+    else
+      render json: {error: "User not found"}, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +44,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +61,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :api_token, :password_digest)
+      params.permit(:email, :password, :password_confirmation)
     end
 end
