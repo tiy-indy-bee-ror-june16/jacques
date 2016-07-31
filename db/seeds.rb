@@ -6,16 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = 10.times.map do
-  User.create!(
-    username: Faker::Internet.user_name(nil, %w(_-)),
-    email: Faker::Internet.safe_email,
-    password: "password",
-    password_confirmation: "password",
-    created_at: Faker::Time.between(8.months.ago, 7.months.ago, :all)
-  )
-end
-
 tag = 12.times do
   Tag.create!(
     name: Faker::Book.genre
@@ -26,7 +16,6 @@ end
   note = Note.create!(
     title: Faker::Beer.name,
     body: Faker::Hipster.paragraphs(5).join("\n\n"),
-    user: user.sample,
     created_at: Faker::Time.between(6.months.ago, Date.today, :all),
   )
   2.times do
