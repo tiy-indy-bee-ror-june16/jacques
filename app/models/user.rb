@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-    has_many :notes
-
     has_secure_password
 
     validates :api_token, presence: true, uniqueness: true
