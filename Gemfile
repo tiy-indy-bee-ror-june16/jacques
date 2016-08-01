@@ -23,6 +23,13 @@ gem 'puma'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
   gem 'rack-cors'
 
+  gem "rack-protection", :github => "sinatra/rack-protection"
+  gem 'refile', github: 'refile/refile', require: 'refile/rails'
+  gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
+  gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+  gem 'refile-postgres', '~> 1.4'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
