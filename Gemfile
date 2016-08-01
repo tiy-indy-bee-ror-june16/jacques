@@ -17,6 +17,11 @@ gem 'puma'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'pry-rails'
 gem 'faker'
+gem "rack-protection", :github => "sinatra/rack-protection"
+gem 'refile', github: 'refile/refile', require: 'refile/rails'
+gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+gem 'refile-postgres', '~> 1.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
