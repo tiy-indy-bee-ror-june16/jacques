@@ -29,7 +29,7 @@ class NotesController < ApplicationController
     if @note.save
       render json: @note, status: :created, location: @note
     else
-      render json: {errors: @note.errors.full_messages.map{|m| {error: m} }}, status: 400
+      render json: @note.errors.full_messages, status: 400
     end
   end
 
@@ -38,7 +38,7 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       render json: @note
     else
-      render json: @note.errors, status: :unprocessable_entity
+      render json: @note.errors.full_messages, status: :unprocessable_entity
     end
   end
 
