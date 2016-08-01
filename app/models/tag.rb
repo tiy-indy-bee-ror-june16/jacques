@@ -8,6 +8,7 @@ class Tag < ApplicationRecord
   # def to_param
   #   name
   # end
+  default_scope { order(name: :asc) }
 
 
 end

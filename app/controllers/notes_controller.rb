@@ -35,6 +35,14 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   def update
+
+    if params[:tags]
+      @note.tags.delete_all
+      params[:tags].split(",").map(&:strip).each do |name|
+      @note.tags << Tag.find_or_initialize_by(name: name)
+      end
+    end
+
     if @note.update(note_params)
       render json: @note
     else

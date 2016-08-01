@@ -17,6 +17,8 @@ gem 'puma'
  gem 'pry-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'faker'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
   gem 'rack-cors'
@@ -37,8 +39,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'faker'
 
 end
 
