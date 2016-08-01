@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+gem 'faker'
+# gem "rack-protection", :github => "sinatra/rack-protection"
+# gem 'refile', github: 'refile/refile', require: 'refile/rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -41,7 +43,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
