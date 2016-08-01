@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :tags, except: [:show]
     resources :notes
     get 'notes/tag/:name(.:format)' => 'tags#show'
+    post 'login' => 'user#login'
   end
 
 
